@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [user, setUser] = useState();
-  const [imageUrl, setImageUrl] = useState("");
   const fetchData = async () => {
     const res = await fetch(
       "https://random-data-api.com/api/users/random_user"
@@ -12,15 +11,8 @@ function App() {
     console.log(data);
   };
 
-  const fetchImage = async () => {
-    const res = await fetch("https://picsum.photos/300");
-    console.log(res.url);
-    setImageUrl(res.url);
-  };
-
   useEffect(() => {
     fetchData();
-    fetchImage();
   }, []);
   return (
     <div>
@@ -33,7 +25,6 @@ function App() {
           <p>Email: {user.email}</p>
         </div>
       )}
-      {imageUrl && <img src={imageUrl} alt="image" />}
     </div>
   );
 }
